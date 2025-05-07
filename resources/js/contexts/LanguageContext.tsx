@@ -176,6 +176,7 @@ const translations: Record<Language, Record<string, string>> = {
 
         // Simulator
         "simulator": "Simulateur",
+        "simulator_description": "Simulez vos transactions avec le XH Token.",
         "rewards": "Récompenses",
         "health_score_2": "Score de santé",
         "monthly_cost": "Coût mensuel",
@@ -348,6 +349,7 @@ const translations: Record<Language, Record<string, string>> = {
         // Simulator
         "simulator": "Simulator",
         "rewards": "Rewards",
+        "simulator_description": "Simulate your transactions with the XH Token.",
         "health_score_2": "Health Score",
         "monthly_cost": "Monthly Cost",
         "estimated_rewards": "Estimated Rewards"

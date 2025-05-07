@@ -39,6 +39,7 @@ export const Footer: React.FC = () => {
               <Link href="/health-packs" className="text-sm opacity-80 hover:opacity-100">{t('health_packs')}</Link>
               <Link href="/blockchain" className="text-sm opacity-80 hover:opacity-100">{t('about_blockchain')}</Link>
               <Link href="/how-it-works" className="text-sm opacity-80 hover:opacity-100">{t('how_it_works')}</Link>
+              <Link href="/simulator" className="text-sm opacity-80 hover:opacity-100">{t('simulator')}</Link>
               <Link href="/contact" className="text-sm opacity-80 hover:opacity-100">{t('contact')}</Link>
             </div>
           </div>

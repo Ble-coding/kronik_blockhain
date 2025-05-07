@@ -35,11 +35,11 @@ export default function AppLogo() {
 </Link>
 
   </div>
-  <div className="ml-3">
+  {/* <div className="ml-3">
   <span className="block font-playfair text-guilo text-xs font-medium leading-none">
     Kronik Blockhain
   </span>
-</div>
+</div> */}
 
 </Link>
 

@@ -1,14 +1,15 @@
 import AppLayoutTemplate from '@/layouts/app/app-menu-layout';
 import { Head, Link } from '@inertiajs/react';
+import React, { useState } from 'react';
 import { type BreadcrumbItem } from '@/types';
-// import { useTranslation } from 'react-i18next';
+import { useToast } from '@/components/ui/use-toast';
+import { Label } from '@/components/ui/label';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Shield, Award, Globe, Hospital } from 'lucide-react';
 import HealthPackCardList from '@/components/health-pack-card-list';
 import type { HealthPack } from '@/types/health';
-// import { useToast } from '@/components/ui/use-toast';
-
+import { Checkbox } from '@/components/ui/checkbox';
 
 const breadcrumbs: BreadcrumbItem[] = [
   { title: 'Dashboard', href: '/dashboard' },
@@ -16,56 +17,64 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function Home() {
   const { t } = useLanguage();
-//   const [useXHToken, setUseXHToken] = useState(true);
+    const { toast } = useToast();
+ const [useXHToken, setUseXHToken] = useState(true);
 
-   const packs: HealthPack[] = [
-      {
-        id: '1',
-        title: t('basic_pack'),
-        price: '10 XH',
-        color: 'xh-blue',
-        features: [
-          { value: '2', label: t('consultations') },
-          { value: '5', label: t('medications') },
-          { value: '1', label: t('tests') },
-        ],
-      },
-      {
-        id: '2',
-        title: t('premium_pack'),
-        price: '25 XH',
-        color: 'xh-green',
-        isFeatured: true,
-        features: [
-          { value: '5', label: t('consultations') },
-          { value: '15', label: t('medications') },
-          { value: '3', label: t('tests') },
-        ],
-      },
-      {
-        id: '3',
-        title: t('family_pack'),
-        price: '40 XH',
-        color: 'xh-blue',
-        features: [
-          { value: '10', label: t('consultations') },
-          { value: '30', label: t('medications') },
-          { value: '5', label: t('tests') },
-        ],
-      },
-      {
-        id: '4',
-        title: t('chronic_care_pack'),
-        price: '60 XH',
-        color: 'xh-blue',
-        features: [
-          { value: t('unlimited'), label: t('consultations') },
-          { value: t('unlimited'), label: t('medications') },
-          { value: '10', label: t('tests') },
-        ],
-      },
-    ];
+  const packs: HealthPack[] = [
+    {
+      id: '1',
+      title: t('basic_pack'),
+      price: useXHToken ? '10 XH' : '6 000 CFA',
+      color: 'xh-blue',
+      features: [
+        { value: '2', label: t('consultations') },
+        { value: '5', label: t('medications') },
+        { value: '1', label: t('tests') },
+      ],
+    },
+    {
+      id: '2',
+      title: t('premium_pack'),
+      price: useXHToken ? '25 XH' : '12 000 CFA',
+      color: 'xh-green',
+      isFeatured: true,
+      features: [
+        { value: '5', label: t('consultations') },
+        { value: '15', label: t('medications') },
+        { value: '3', label: t('tests') },
+      ],
+    },
+    {
+      id: '3',
+      title: t('family_pack'),
+      price: useXHToken ? '40 XH' : '20 000 CFA',
+      color: 'xh-blue',
+      features: [
+        { value: '10', label: t('consultations') },
+        { value: '30', label: t('medications') },
+        { value: '5', label: t('tests') },
+      ],
+    },
+    {
+      id: '4',
+      title: t('chronic_care_pack'),
+      price: useXHToken ? '60 XH' : '25 000 CFA',
+      color: 'xh-blue',
+      features: [
+        { value: t('unlimited'), label: t('consultations') },
+        { value: t('unlimited'), label: t('medications') },
+        { value: '10', label: t('tests') },
+      ],
+    },
+  ];
 
+    const handlePurchase = (pack: HealthPack) => {
+      toast({
+        title: t('pack_selected'),
+        description: `${t('you_selected')} ${pack.title} ${t('for')} ${pack.price} ${useXHToken ? 'XH' : 'CFA'}.`,
+        duration: 5000,
+      });
+    };
   return (
     <AppLayoutTemplate breadcrumbs={breadcrumbs}>
       <Head title={t('home')} />
@@ -158,8 +167,21 @@ export default function Home() {
             {t('health_pack_subtitle')}
         </p>
         </div>
+        <div className="flex justify-center mb-8">
+          <div className="flex items-center space-x-2">
+          <Checkbox
+            id="token-payment"
+            checked={useXHToken}
+            onCheckedChange={() => setUseXHToken(!useXHToken)}
+            />
+            <Label htmlFor="token-payment">
+            {useXHToken ? t('pay_with_token') : t('pay_with_cfa')}
+            </Label>
+          </div>
+        </div>
 
-        <HealthPackCardList packs={packs} t={t} onBuy={() => {}} />
+        {/* Composant réutilisable */}
+        <HealthPackCardList packs={packs} t={t} onBuy={handlePurchase} />
 
         <div className="text-center mt-10">
         <Link

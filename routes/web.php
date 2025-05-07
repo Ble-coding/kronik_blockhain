@@ -8,6 +8,7 @@ use App\Http\Controllers\BlockchainController;
 use App\Http\Controllers\HowItWorksController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\SimulatorController;
 
 // Route::get('/', function () {
 //     return Inertia::render('welcome');
@@ -21,7 +22,7 @@ Route::resource('blockchain', BlockchainController::class);
 Route::resource('how-it-works', HowItWorksController::class);
 Route::resource('contact', ContactController::class);
 Route::resource('wallet', WalletController::class);
-
+Route::resource('simulator', SimulatorController::class);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

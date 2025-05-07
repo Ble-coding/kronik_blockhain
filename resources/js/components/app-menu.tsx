@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import AppLogo from '@/components/app-logo'
 import LanguageSelector from '@/components/language-selector'
+// import WalletIconPage from '@/components/wallet-icon'
 import { useLanguage} from '@/contexts/LanguageContext';
 
 
@@ -35,6 +36,7 @@ const navLinks = [
     { name: t('health_packs'), href: '/health-packs' },
     { name: t('about_blockchain'), href: '/blockchain' },
     { name: t('how_it_works'), href: '/how-it-works' },
+    { name: t('wallet'), href: '/wallet' },
     { name: t('contact'), href: '/contact' },
   ]
 
@@ -81,6 +83,7 @@ const navLinks = [
           ))}
 
 <LanguageSelector />
+{/* <WalletIconPage /> */}
 
           {!auth.user && (
             <>
@@ -137,6 +140,7 @@ const navLinks = [
             ))}
 
 <LanguageSelector />
+{/* <WalletIconPage /> */}
             {!auth.user ? (
               <a
                 href={route('login')}

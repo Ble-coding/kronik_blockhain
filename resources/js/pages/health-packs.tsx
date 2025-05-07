@@ -17,7 +17,7 @@ const HealthPacks: React.FC = () => {
     {
       id: '1',
       title: t('basic_pack'),
-      price: '10 XH',
+      price: useXHToken ? '10 XH' : '6 000 CFA',
       color: 'xh-blue',
       features: [
         { value: '2', label: t('consultations') },
@@ -28,7 +28,7 @@ const HealthPacks: React.FC = () => {
     {
       id: '2',
       title: t('premium_pack'),
-      price: '25 XH',
+      price: useXHToken ? '25 XH' : '12 000 CFA',
       color: 'xh-green',
       isFeatured: true,
       features: [
@@ -40,7 +40,7 @@ const HealthPacks: React.FC = () => {
     {
       id: '3',
       title: t('family_pack'),
-      price: '40 XH',
+      price: useXHToken ? '40 XH' : '20 000 CFA',
       color: 'xh-blue',
       features: [
         { value: '10', label: t('consultations') },
@@ -51,7 +51,7 @@ const HealthPacks: React.FC = () => {
     {
       id: '4',
       title: t('chronic_care_pack'),
-      price: '60 XH',
+      price: useXHToken ? '60 XH' : '25 000 CFA',
       color: 'xh-blue',
       features: [
         { value: t('unlimited'), label: t('consultations') },
@@ -85,13 +85,13 @@ const HealthPacks: React.FC = () => {
 
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-2">
-            <Checkbox
-              id="token-payment"
-              checked={useXHToken}
-              onCheckedChange={() => setUseXHToken(!useXHToken)}
+          <Checkbox
+            id="token-payment"
+            checked={useXHToken}
+            onCheckedChange={() => setUseXHToken(!useXHToken)}
             />
             <Label htmlFor="token-payment">
-              {useXHToken ? t('pay_with_token') : t('pay_with_cfa')}
+            {useXHToken ? t('pay_with_token') : t('pay_with_cfa')}
             </Label>
           </div>
         </div>
